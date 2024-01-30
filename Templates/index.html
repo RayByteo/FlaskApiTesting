@@ -5,7 +5,7 @@
 </head>
 <body>
     <h1>Breaking Bad Quotes</h1>
-    <h1 name="tag" value="tag"> {{ quote.quote }} </h1>
+    <h1> {% if error_message != None %} {{ quote }} {% else %} {{error_message}} {% endif %} </h1>
     <input type="submit" name="submit_button" value="Generate">
 </body>
 </html>

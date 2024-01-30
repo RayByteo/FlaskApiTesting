@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request
 import requests
-import re
 
 app = Flask(__name__)
 
@@ -10,10 +9,11 @@ def home():
     error_message = ""
     if request.method == 'POST':
         if request.form['submit_button'] == 'Generate':
-            response = requests.get(f'https://dog-facts-api.herokuapp.com/api/v1/resources/dogs?number=1')
-        if response.status_code == 200:
-                quote = response.json()
-        else:
+            response = requests.get('https://jsonplaceholder.typicode.com/posts/1')
+            if response.status_code == 200:
+                data = response.json()
+                quote = data['title'] if data else ""
+            else:
                 error_message = "Error getting quote"
     return render_template('index.html', quote=quote, error_message=error_message)
 
