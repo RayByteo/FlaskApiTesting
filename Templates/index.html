@@ -1,11 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Breaking bad quotes</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country Info</title>
 </head>
 <body>
-    <h1>Breaking Bad Quotes</h1>
-    <h1> {% if error_message != None %} {{ quote }} {% else %} {{error_message}} {% endif %} </h1>
-    <input type="submit" name="submit_button" value="Generate">
+    <h1>Country Information</h1>
+    
+    <form action="/get_country_info" method="post">
+        <label for="country_name">Enter Country:</label>
+        <input type="text" id="country_name" name="country_name" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if country_info %}
+        <h2>{{ country_info[0]['name'] }}</h2>
+        <p>Capital: {{ country_info[0]['capital'] }}</p>
+        <p>Population: {{ country_info[0]['population'] }}</p>
+        <!-- Add more fields as needed -->
+    {% endif %}
 </body>
 </html>
