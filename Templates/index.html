@@ -4,21 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Country Info</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    <h1>Country Information</h1>
-    
-    <form action="/get_country_info" method="post">
-        <label for="country_name">Enter Country:</label>
-        <input type="text" id="country_name" name="country_name" required>
-        <button type="submit">Submit</button>
-    </form>
+<body class="bg-gray-100 p-8">
 
-    {% if country_info %}
-        <h2>{{ country_info[0]['name'] }}</h2>
-        <p>Capital: {{ country_info[0]['capital'] }}</p>
-        <p>Population: {{ country_info[0]['population'] }}</p>
-        <!-- Add more fields as needed -->
+    <div class="max-w-md mx-auto bg-white p-6 rounded-md shadow-md">
+
+        <h1 class="text-2xl font-semibold mb-4">Country Information</h1>
+        
+        <form action="/get_country_info" method="post">
+            <label for="country_name" class="block text-sm font-medium text-gray-600 mb-2">Enter Country:</label>
+            <input type="text" id="country_name" name="country_name" required
+                   class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300">
+            <button type="submit" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">Submit</button>
+        </form>
+
+        {% if country_info %}
+        <div class="mt-8">
+            <h2 class="text-xl font-semibold mb-2">{{ country_info[0]['name'] }}</h2>
+            <p class="text-gray-600">Capital: {{ country_info[0]['capital'] }}</p>
+            <p class="text-gray-600">Population: {{ country_info[0]['population'] }}</p>
+        </div>
     {% endif %}
+
+    </div>
 </body>
 </html>
